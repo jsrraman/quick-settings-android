@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rajaraman.qsnotificationbar"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name="MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+        <service android:name="com.rajaraman.qsnotificationbar.QSNotificationBarService" />
+
+        <receiver android:name="com.rajaraman.qsnotificationbar.BootCompletedReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        
+        <receiver android:name="com.rajaraman.qsnotificationbar.WifiStateChangedBroadCastReceiver" >
+            <intent-filter>
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+       
+        <receiver
+            android:name="com.rajaraman.qsnotificationbar.QSBroadCastReceiver"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/Wifi" >
+            <intent-filter>
+                <action android:name="ACTION_WIFI_TOGGLE_CLICKED" />
+                <action android:name="ACTION_DATA_CONN_TOGGLE_CLICKED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.rajaraman.qsnotificationbar.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
