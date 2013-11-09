@@ -50,5 +50,14 @@
          android:layout_marginBottom="12dp"
          android:layout_marginLeft="4dp"
          android:src="@drawable/ic_wifi_off" />
+
+     <ImageView
+         android:id="@+id/image_view_airplane_mode"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBottom="@+id/image_view_data_conn"
+         android:layout_marginLeft="4dp"
+         android:layout_toRightOf="@+id/image_view_data_conn"
+         android:src="@drawable/ic_airplane_mode_off" />
     
 </RelativeLayout>
