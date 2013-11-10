@@ -3,8 +3,12 @@ package com.rajaraman.qsnotificationbar;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract.PhoneLookup;
 import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 
@@ -37,8 +41,6 @@ public class Utils {
   private static Utils mUtils = null;
 
   private Context mContext = null;
-
-  WifiStateChangedBroadCastReceiver objWifiStateChangedBroadCastReceiver;
 
   private NotificationManager mNotificationManager = null;
 
@@ -160,7 +162,7 @@ public class Utils {
   void setupIntentInfoForNotificationContentViewControlClicks(int iNotificationToggle,
       RemoteViews contentView, int iResourceId, int iResouceImageViewId) {
 
-    Intent intent = new Intent(mContext, QSBroadCastReceiver.class);
+    Intent intent = new Intent(mContext, QSNotificationBarReceiver.class);
 
 
     // Setup intent action for the respective toggle click
@@ -188,5 +190,30 @@ public class Utils {
     PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, 0, intent, 0);
     contentView.setOnClickPendingIntent(iResourceId, pendingIntent);
     contentView.setImageViewResource(iResourceId, iResouceImageViewId);
+  }
+
+  public String getContactName(Context context, String phoneNumber) {
+
+    ContentResolver cr = context.getContentResolver();
+
+    Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
+
+    Cursor cursor = cr.query(uri, new String[] {PhoneLookup.DISPLAY_NAME}, null, null, null);
+
+    if (cursor == null) {
+      return null;
+    }
+
+    String contactName = null;
+
+    if (cursor.moveToFirst()) {
+      contactName = cursor.getString(cursor.getColumnIndex(PhoneLookup.DISPLAY_NAME));
+    }
+
+    if (cursor != null && !cursor.isClosed()) {
+      cursor.close();
+    }
+
+    return contactName;
   }
 }

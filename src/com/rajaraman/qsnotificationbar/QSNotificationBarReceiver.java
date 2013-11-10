@@ -13,7 +13,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
 
-public class QSBroadCastReceiver extends BroadcastReceiver {
+public class QSNotificationBarReceiver extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
@@ -151,6 +151,7 @@ public class QSBroadCastReceiver extends BroadcastReceiver {
   }
 
   void openMobileNetworkSettingsPage(Context context) {
+
     Intent intent = new Intent(android.provider.Settings.ACTION_DATA_ROAMING_SETTINGS);
     intent.setClassName("com.android.phone", "com.android.phone.MobileNetworkSettings");
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -167,6 +168,7 @@ public class QSBroadCastReceiver extends BroadcastReceiver {
     collapseStatusBar(context);
   }
 
+  // This is hacky !!!
   void collapseStatusBar(Context context) {
     // Get access to system status bar. This is not public so may be deprecated in the future
     Object service = context.getSystemService("statusbar");
