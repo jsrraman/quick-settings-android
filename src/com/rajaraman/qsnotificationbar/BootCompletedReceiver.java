@@ -10,7 +10,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
   public void onReceive(Context context, Intent intent) {
 
     Log.d(Constants.TAG, "Boot completed event received");
-    
+
     // TODO: move mQSNotificationBarIntent to application context so that this can be used
     // while stopping the service
     Intent mQSNotificationBarIntent = new Intent(context, QSNotificationBarService.class);

@@ -12,6 +12,8 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>     
 
     <application
@@ -29,19 +31,26 @@
             </intent-filter>
         </receiver>
         
-        <receiver android:name="com.rajaraman.qsnotificationbar.WifiStateChangedBroadCastReceiver" >
+        <receiver android:name="com.rajaraman.qsnotificationbar.WifiStateChangedReceiver" >
             <intent-filter>
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
         </receiver>
+        
+        <receiver android:name="com.rajaraman.qsnotificationbar.PhoneStateChangedReceiver">
+            <intent-filter >
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
        
         <receiver
-            android:name="com.rajaraman.qsnotificationbar.QSBroadCastReceiver"
+            android:name="com.rajaraman.qsnotificationbar.QSNotificationBarReceiver"
             android:icon="@drawable/ic_launcher"
             android:label="@string/Wifi" >
             <intent-filter>
                 <action android:name="ACTION_WIFI_TOGGLE_CLICKED" />
                 <action android:name="ACTION_DATA_CONN_TOGGLE_CLICKED" />
+                <action android:name="ACTION_AIRPLANE_MODE_TOGGLE_CLICKED" />
             </intent-filter>
         </receiver>
 

@@ -36,6 +36,8 @@ public class MainActivity extends Activity {
       public void onClick(View v) {
         // TODO Auto-generated method stub
         utils.cancelPersistentNotification();
+
+        // TODO Also need to stop the service
       }
     });
 
