@@ -1,0 +1,72 @@
+<!--
+ <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget"
+    android:layout_width="320dp"
+    android:layout_height="100dp"
+    android:layout_margin="8dp">
+    android:background="@drawable/rectangle">
+
+    <Button
+        android:id="@+id/btnWifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+         android:layout_margin="4dp"
+        android:text="@string/Wifi" />
+    
+     <Button
+        android:id="@+id/btnDataConn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:text="@string/Data" />
+  
+</LinearLayout>
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget"
+    android:layout_width="320dp"
+    android:layout_height="64dp"
+    android:fitsSystemWindows="false" >
+
+     <ImageView
+         android:id="@+id/image_view_wifi"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="false"
+         android:layout_alignParentLeft="true"
+         android:layout_marginBottom="12dp"
+         android:layout_marginLeft="4dp"
+         android:src="@drawable/ic_wifi_off" />
+
+    <ImageView
+        android:id="@+id/image_view_data_conn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@+id/image_view_wifi"
+        android:src="@drawable/ic_data_conn_off" />
+
+    <ImageView
+        android:id="@+id/image_view_2g_3g_data_conn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/image_view_data_conn"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@+id/image_view_data_conn"
+        android:src="@drawable/ic_2g_3g_data_conn_both_off" />
+
+    <ImageView
+        android:id="@+id/image_view_airplane_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/image_view_data_conn"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@+id/image_view_2g_3g_data_conn"
+        android:src="@drawable/ic_airplane_mode_off" />
+    
+</RelativeLayout>
