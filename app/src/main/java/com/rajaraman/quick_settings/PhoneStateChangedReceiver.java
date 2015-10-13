@@ -5,18 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
+import com.noveogroup.android.log.Log;
 
 public class PhoneStateChangedReceiver extends BroadcastReceiver {
-
     Bundle mExtras = null;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO Auto-generated method stub
-
-        Log.d(Constants.TAG, "Phoone state change event received");
+        Log.d("Phone state change event received");
 
         mExtras = intent.getExtras();
 
@@ -35,7 +32,7 @@ public class PhoneStateChangedReceiver extends BroadcastReceiver {
                 // Get the contact name for this number
                 String contactName = Utils.getInstance().getContactName(context, phoneNumber);
 
-                Log.d(Constants.TAG, "Missed call from -" + contactName);
+                Log.d("Missed call from -" + contactName);
             }
         }
     }

@@ -12,11 +12,11 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.provider.ContactsContract.PhoneLookup;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 import android.widget.RemoteViews;
 
-public class Utils {
+import com.noveogroup.android.log.Log;
 
+public class Utils {
     public static final int NOTIFICATION_ID = 1;
 
     // Supported toggles
@@ -26,13 +26,9 @@ public class Utils {
     public static final int NOTIFICATION_AIRPLANE_MODE_TOGGLE = 3;
 
     public static final String TAG = "QSNotificationBar";
-
     private static Utils mUtils = null;
-
     private Context mContext = null;
-
     private NotificationManager mNotificationManager = null;
-
     private Notification mNotification = null;
 
     private Utils() {
@@ -51,7 +47,6 @@ public class Utils {
     }
 
     public void showPersistentNotification(NetworkStatus networkStatus) {
-
         // Build the notification - Builder pattern :)
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(mContext).setSmallIcon(R.drawable.ic_launcher)
@@ -131,19 +126,17 @@ public class Utils {
     }
 
     public void cancelPersistentNotification() {
-        // TODO Auto-generated method stub
         mNotificationManager.cancel(NOTIFICATION_ID);
     }
 
     void setupIntentInfoForNotificationContentViewControlClicks(int iNotificationToggle,
-                                                                RemoteViews contentView, int iResourceId, int iResourceImageViewId) {
-
+                                                                RemoteViews contentView,
+                                                                int iResourceId,
+                                                                int iResourceImageViewId) {
         Intent intent = new Intent(mContext, QSNotificationBarReceiver.class);
-
 
         // Setup intent action for the respective toggle click
         switch (iNotificationToggle) {
-
             case NOTIFICATION_WIFI_TOGGLE: {
                 intent.setAction(Constants.ACTION_WIFI_TOGGLE_CLICKED);
                 intent.putExtra(Constants.INTENT_EXTRA_WIDGET_TEXT, "Wi-Fi Button Clicked");
@@ -175,7 +168,6 @@ public class Utils {
     }
 
     public NetworkStatus getNetworkStatus() {
-
         ConnectivityManager cm =
                 (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -184,7 +176,7 @@ public class Utils {
         // Wi-Fi connection state
         NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo.DetailedState wifiInfoDetailedState = wifiInfo.getDetailedState();
-        Log.d(TAG, "Wifi Connection State = " + wifiInfoDetailedState.toString());
+        Log.d("Wifi Connection State = " + wifiInfoDetailedState.toString());
 
         if (wifiInfoDetailedState == NetworkInfo.DetailedState.DISCONNECTED) {
             networkStatus.setWifiState(NetworkStatus.NETWORK_WIFI_CONN_OFF);
@@ -195,7 +187,7 @@ public class Utils {
         // Data connection state
         NetworkInfo dataConnInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         NetworkInfo.DetailedState dataConnInfoDetailedState = dataConnInfo.getDetailedState();
-        Log.d(TAG, "Data Connection State = " + dataConnInfoDetailedState.toString());
+        Log.d("Data Connection State = " + dataConnInfoDetailedState.toString());
 
         if (dataConnInfoDetailedState == NetworkInfo.DetailedState.DISCONNECTED) {
             networkStatus.setDataConnState(NetworkStatus.NETWORK_DATA_CONN_OFF);
@@ -203,7 +195,7 @@ public class Utils {
         } else {
             networkStatus.setDataConnState(NetworkStatus.NETWORK_DATA_CONN_ON);
 
-            Log.d(TAG, "Data Connection Sub Type = " + dataConnInfo.getSubtypeName());
+            Log.d("Data Connection Sub Type = " + dataConnInfo.getSubtypeName());
 
             if (dataConnInfo.getSubtypeName().equals("EDGE"))
                 networkStatus.setDataConnSubTypeState(NetworkStatus.NETWORK_2G_3G_DATA_CONN_2G_ON);

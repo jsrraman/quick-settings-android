@@ -9,32 +9,31 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Build;
-import android.util.Log;
+
+import com.noveogroup.android.log.Log;
 
 public class QSNotificationBarReceiver extends BroadcastReceiver {
-
-    private static final String TAG = QSNotificationBarReceiver.class.getCanonicalName();
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
         if (intent == null) {
-            Log.d(TAG, "intent is null. This is unexpected");
+            Log.d("intent is null. This is unexpected");
             return;
         }
 
-        Log.i(TAG, "onReceive called with " + intent.getAction());
+        Log.i("onReceive called with " + intent.getAction());
 
         if (intent.getAction().equals(Constants.ACTION_WIFI_TOGGLE_CLICKED)) {
             String strText = intent.getExtras().getString(Constants.INTENT_EXTRA_WIDGET_TEXT);
-            Log.d(TAG, strText);
+            Log.d(strText);
 
             // Toggle Wi-Fi
             handleWifiToggle(context);
 
         } else if (intent.getAction().equals(Constants.ACTION_DATA_CONN_TOGGLE_CLICKED)) {
             String strText = intent.getExtras().getString(Constants.INTENT_EXTRA_WIDGET_TEXT);
-            Log.d(Constants.TAG, strText);
+            Log.d(strText);
 
             // From Android 5.0, the private class which is used to programmatically toggle the
             // connection is not available via reflection, so just open the relevant activity from
@@ -46,14 +45,14 @@ public class QSNotificationBarReceiver extends BroadcastReceiver {
 
         } else if (intent.getAction().equals(Constants.ACTION_2G_3G_DATA_CONN_TOGGLE_CLICKED)) {
             String strText = intent.getExtras().getString(Constants.INTENT_EXTRA_WIDGET_TEXT);
-            Log.d(Constants.TAG, strText);
+            Log.d(strText);
 
             openMobile2g3gEnableSettingsPage(context);
 
         } else if (intent.getAction().equals(Constants.ACTION_AIRPLANE_MODE_TOGGLE_CLICKED)) {
 
             String strText = intent.getExtras().getString(Constants.INTENT_EXTRA_WIDGET_TEXT);
-            Log.d(Constants.TAG, strText);
+            Log.d(strText);
 
             // From 4.2, system settings in read only and Airplane mode is under system settings
             // http://stackoverflow.com/questions/5533881/toggle-airplane-mode-in-android

@@ -3,7 +3,6 @@ package com.rajaraman.quick_settings;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,7 +20,6 @@ public class MainActivity extends Activity {
 
         Button button_enable = (Button) findViewById(R.id.button_enable);
         button_enable.setOnClickListener(new OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
@@ -50,16 +48,12 @@ public class MainActivity extends Activity {
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
-
-        Log.d(Constants.TAG, "onResume");
     }
 
     @Override
     protected void onPause() {
         // TODO Auto-generated method stub
         super.onPause();
-
-        Log.d(Constants.TAG, "onPause");
     }
 
     @Override

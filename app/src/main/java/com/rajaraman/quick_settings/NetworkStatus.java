@@ -1,10 +1,6 @@
 package com.rajaraman.quick_settings;
 
-/**
- * Created by subramk on 23/11/14.
- */
 public class NetworkStatus {
-
     // Network status constants
     public static final int NETWORK_WIFI_CONN_OFF = 0;
     public static final int NETWORK_WIFI_CONN_ON = 1;
