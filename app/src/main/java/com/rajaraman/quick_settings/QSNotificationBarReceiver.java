@@ -180,7 +180,6 @@ public class QSNotificationBarReceiver extends BroadcastReceiver {
 
     // Open the relevant system activity from where user will enable 2G/3G
     void openMobile2g3gEnableSettingsPage(Context context) {
-
         Intent intent = new Intent(android.provider.Settings.ACTION_DATA_ROAMING_SETTINGS);
         intent.setClassName("com.android.phone", "com.android.phone.MobileNetworkSettings");
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -190,7 +189,6 @@ public class QSNotificationBarReceiver extends BroadcastReceiver {
     }
 
     void openWirelessNetworkSettingsPage(Context context) {
-
         Intent intent = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
